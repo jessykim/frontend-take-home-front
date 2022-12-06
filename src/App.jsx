@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import InfoForm from './components/InfoForm';
 
-
 import * as formService from './services/formService'
 
 function App() {
@@ -17,15 +16,12 @@ function App() {
     navigate('/form')
   }
 
-
   return (
     <>
-    <Routes>
-      <Route path="/" />
-      <Route path="/form" element={<InfoForm handleAddForm={handleAddForm} />} />
-    </Routes>
-      {/* <h1>Information Form</h1>
-      <InfoForm handleAddForm={handleAddForm}/> */}
+      <Routes>
+        <Route path="/" />
+        <Route path="/form" element={<InfoForm handleAddForm={handleAddForm} />} />
+      </Routes>
     </>
   );
 }

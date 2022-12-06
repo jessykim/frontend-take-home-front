@@ -1,5 +1,5 @@
 import styles from './InfoForm.module.css'
-import { useState } from 'react'
+import { React, useState } from 'react'
 
 const InfoForm = (props) => {
   const [form, setForm] = useState({
@@ -10,6 +10,11 @@ const InfoForm = (props) => {
     state: ''
   })
 
+  const [
+    isSuccesssfullySubmitted,
+    setIsSuccessfullySubmitted,
+  ] = useState(false)
+
   const handleChange = ({ target }) => {
     setForm({ ...form, [target.name]: target.value })
   }
@@ -17,6 +22,7 @@ const InfoForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddForm(form)
+    setIsSuccessfullySubmitted(true)
   }
 
   return (
@@ -167,6 +173,9 @@ const InfoForm = (props) => {
             </select>
           </div>
           <button type="submit" className="btn btn-primary">SUBMIT</button>
+          {isSuccesssfullySubmitted && (
+            <div className={styles.success}>Form submitted successfully!</div>
+          )}
         </form>
       </div>
     </>
