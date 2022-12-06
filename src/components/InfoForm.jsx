@@ -10,6 +10,10 @@ const InfoForm = (props) => {
     state: ''
   })
 
+  const handleChange = ({ target }) => {
+    setForm({ ...form, [target.name]: target.value })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddForm(form)
@@ -21,20 +25,32 @@ const InfoForm = (props) => {
         <label htmlFor="name-input">Full Name</label>
         <input 
           type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
           required 
         />
         <label htmlFor="email-input">Email</label>
         <input 
           type="text"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
           required 
         />
         <label htmlFor="password-input">Password</label>
         <input 
           type="text"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
           required 
         />
         <label htmlFor="occupation-input">Occupation</label>
         <select
+          name="occupation"
+          value={form.occupation}
+          onChange={handleChange}
           required 
         >
           <option value="Head of Shrubbery">Head of Shrubbery</option>
@@ -53,6 +69,9 @@ const InfoForm = (props) => {
         </select>
         <label htmlFor="state-input">State</label>
         <select
+          name="state"
+          value={form.state}
+          onChange={handleChange}
           required 
         >
           <option value="Alabama">AL</option>
