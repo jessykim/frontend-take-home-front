@@ -1,6 +1,6 @@
 // import * as tokenService from "./tokenService"
 
-const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/forms`
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/form`
 
 const index = async () => {
   try {
@@ -15,7 +15,7 @@ const index = async () => {
 
 const create = async (formData) => {
   try {
-    // POST http://localhost:3001/api/forms
+    // POST http://localhost:3001/api/form
     const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
