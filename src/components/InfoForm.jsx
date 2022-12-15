@@ -23,6 +23,13 @@ const InfoForm = (props) => {
     e.preventDefault()
     props.handleAddForm(form)
     setIsSuccessfullySubmitted(true)
+    setForm({
+      name: '',
+      email: '',
+      password: '',
+      occupation: '',
+      state: ''
+    })
   }
 
   return (
