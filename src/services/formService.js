@@ -12,7 +12,7 @@ const index = async () => {
 const create = async (formData) => {
   try {
     // POST http://localhost:3001/api/form
-    const res = await fetch(BASE_URL, {
+    const res = await fetch("https://frontend-take-home.fetchrewards.com/form", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +25,22 @@ const create = async (formData) => {
   }
 }
 
+const formInfo = async () => {
+  try {
+    const res = await fetch("https://frontend-take-home.fetchrewards.com/form", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
 	create,
-  index
+  index,
+  formInfo
 }

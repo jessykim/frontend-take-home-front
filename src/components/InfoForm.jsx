@@ -1,5 +1,7 @@
 import styles from './InfoForm.module.css'
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
+
+import * as formService from '../services/formService'
 
 const InfoForm = (props) => {
   const [form, setForm] = useState({
@@ -9,7 +11,8 @@ const InfoForm = (props) => {
     occupation: '',
     state: ''
   })
-
+  const [occupations, setOccupations] = useState([])
+  
   const [
     isSuccesssfullySubmitted,
     setIsSuccessfullySubmitted,
@@ -18,7 +21,7 @@ const InfoForm = (props) => {
   const handleChange = ({ target }) => {
     setForm({ ...form, [target.name]: target.value })
   }
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddForm(form)
@@ -31,7 +34,16 @@ const InfoForm = (props) => {
       state: ''
     })
   }
-
+  
+  useEffect(() => {
+    async function fetchData() {
+      const data = await formService.formInfo()
+      setOccupations(data.occupations)
+      console.log(data.occupations)
+    }
+    fetchData()
+  }, [])
+  
   return (
     <>
       <main>
@@ -98,19 +110,13 @@ const InfoForm = (props) => {
                 className="form-select" aria-label="Default select example"
                 required 
               >
-                <option defaultValue="Head of Shrubbery">Head of Shrubbery</option>
-                <option value="Interim Substitute Teacher">Interim Substitute Teacher</option>
-                <option value="Water Softener">Water Softener</option>
-                <option value="Listener of the House">Listener of the House</option>
-                <option value="Really Good Dancer">Really Good Dancer</option>
-                <option value="Gainfully Unemployed">Gainfully Unemployed</option>
-                <option value="Alexa Impersonator">Alexa Impersonator</option>
-                <option value="Chard Farmer">Chard Farmer</option>
-                <option value="Chief Frolicker (Jolly)">Chief Frolicker (Jolly)</option>
-                <option value="Entry-level Seat Recliner">Entry-level Seat Recliner</option>
-                <option value="CEO (Summer Internship)">CEO (Summer Internship)</option>
-                <option value="Widget Fabricator">Widget Fabricator</option>
-                <option value="Underwater Basket Weaver">Underwater Basket Weaver</option>
+                {occupations.map((occupation) => (
+                  <option
+                    value={occupation}
+                  >
+                    {occupation}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="input-group mb-3">
